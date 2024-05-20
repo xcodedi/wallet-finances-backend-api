@@ -1,22 +1,17 @@
 const express = require("express");
-const db = require("./db"); // Certifique-se de que este caminho está correto
+const db = require("./db"); //Caminho atualizado
+const categoriesRouter = require("./routes/categories");
 const app = express();
 const port = 3000;
+
+app.use(express.json()); //Middleware para analisar o corpo das requisições JSON
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-// Rota para consultar a tabela 'categories'
-app.get("/categories", async (req, res) => {
-  try {
-    const result = await db.query("SELECT * FROM categories");
-    res.json(result.rows);
-  } catch (err) {
-    console.error("Erro ao consultar o banco de dados:", err);
-    res.status(500).send("Erro ao consultar o banco de dados");
-  }
-});
+//roteador de categorias
+app.use("/categories", categoriesRouter);
 
 app.listen(port, async () => {
   try {
