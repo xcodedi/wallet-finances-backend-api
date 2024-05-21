@@ -55,4 +55,32 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+// Rota PUT para atualizar uma categoria pelo ID
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+
+  if (name.length < 3) {
+    return res
+      .status(400)
+      .json({ error: "Name should have more than 3 characters!" });
+  }
+
+  try {
+    const result = await db.query(
+      "UPDATE categories SET name = $1 WHERE id = $2 RETURNING *",
+      [name, id]
+    );
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: "Category not found" });
+    }
+
+    res.status(200).json(result.rows[0]);
+  } catch (err) {
+    console.error("Error updating the database:", err);
+    res.status(500).send("Error updating the database");
+  }
+});
+
 module.exports = router;
