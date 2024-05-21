@@ -8,8 +8,8 @@ router.get("/", async (req, res) => {
     const result = await db.query("SELECT * FROM categories");
     res.json(result.rows);
   } catch (err) {
-    console.error("Erro ao consultar o banco de dados:", err);
-    res.status(500).send("Erro ao consultar o banco de dados");
+    console.error("Error querying the database:", err);
+    res.status(500).send("Error querying the database");
   }
 });
 
@@ -29,8 +29,29 @@ router.post("/", async (req, res) => {
     );
     res.status(201).json(result.rows[0]);
   } catch (err) {
-    console.error("Erro ao inserir no banco de dados:", err);
-    res.status(500).send("Erro ao inserir no banco de dados");
+    console.error("Error inserting into the database:", err);
+    res.status(500).send("Error inserting into the database");
+  }
+});
+
+// Rota DELETE para excluir uma categoria pelo ID
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await db.query(
+      "DELETE FROM categories WHERE id = $1 RETURNING *",
+      [id]
+    );
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: "Category not found" });
+    }
+
+    res.status(200).json({ message: "Category successfully deleted" });
+  } catch (err) {
+    console.error("Error deleting from the database:", err);
+    res.status(500).send("Error deleting from the database");
   }
 });
 

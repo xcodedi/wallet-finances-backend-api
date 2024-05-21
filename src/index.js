@@ -1,24 +1,24 @@
 const express = require("express");
-const db = require("./db"); //Caminho atualizado
+const db = require("./db"); // Updated path
 const categoriesRouter = require("./routes/categories");
 const app = express();
 const port = 3000;
 
-app.use(express.json()); //Middleware para analisar o corpo das requisições JSON
+app.use(express.json()); // Middleware to parse JSON request bodies
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-//roteador de categorias
+// Categories router
 app.use("/categories", categoriesRouter);
 
 app.listen(port, async () => {
   try {
     await db.connect();
-    console.log("Conectado ao banco de dados");
+    console.log("Connected to the database");
   } catch (err) {
-    console.error("Erro ao conectar ao banco de dados:", err);
+    console.error("Error connecting to the database:", err);
   }
   console.log(`Example app listening on port ${port}`);
 });
