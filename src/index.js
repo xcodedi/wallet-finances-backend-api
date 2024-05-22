@@ -1,6 +1,7 @@
 const express = require("express");
 const db = require("./db"); // Updated path
 const categoriesRouter = require("./routes/categories");
+const usersRouter = require("./routes/users");
 const app = express();
 const port = 3000;
 
@@ -12,6 +13,9 @@ app.get("/", (req, res) => {
 
 // Categories router
 app.use("/categories", categoriesRouter);
+
+// users router
+app.use("/users", usersRouter);
 
 app.listen(port, async () => {
   try {
