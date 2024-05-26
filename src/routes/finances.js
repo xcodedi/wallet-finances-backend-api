@@ -89,4 +89,63 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { email } = req.headers;
+
+    // Validar se o ID foi fornecido
+    if (!id) {
+      return res.status(400).json({ error: "ID is mandatory" });
+    }
+
+    // Validar email
+    if (!validateEmail(email)) {
+      return res.status(400).json({ error: "Invalid email format" });
+    }
+
+    // Verificar se o usuário existe
+    const userQuery = {
+      text: usersqueries.findUserByEmail.text,
+      values: [email],
+    };
+    const userResult = await db.query(userQuery);
+    if (userResult.rows.length === 0) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Verificar se o registro financeiro existe e pertence ao usuário
+    const financeQuery = {
+      text: "SELECT * FROM finances WHERE id = $1 AND email = $2",
+      values: [id, email],
+    };
+    const financeResult = await db.query(financeQuery);
+    if (financeResult.rows.length === 0) {
+      return res
+        .status(404)
+        .json({
+          error:
+            "Finance record not found or you do not have permission to delete this record",
+        });
+    }
+
+    // Excluir o registro financeiro
+    const deleteQuery = {
+      text: "DELETE FROM finances WHERE id = $1 RETURNING *",
+      values: [id],
+    };
+    const deleteResult = await db.query(deleteQuery);
+
+    res
+      .status(200)
+      .json({
+        message: "Finance record deleted successfully",
+        deletedRecord: deleteResult.rows[0],
+      });
+  } catch (error) {
+    console.error("Error processing the request:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 module.exports = router;
