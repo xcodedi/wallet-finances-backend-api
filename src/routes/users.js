@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db");
+const usersqueries = require("../queries/users");
 
 const API_KEY = "cafe"; // Defina sua chave de API aqui
 

@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db");
+const categoriesQueries = require("../queries/categories");
 
 // Rota GET para obter todas as categorias
 router.get("/", async (req, res) => {
   try {
-    const result = await db.query("SELECT * FROM categories");
+    const result = await db.query(categoriesQueries.getAllCategories);
     res.json(result.rows);
   } catch (err) {
     console.error("Error querying the database:", err);
@@ -23,10 +24,11 @@ router.post("/", async (req, res) => {
   }
 
   try {
-    const result = await db.query(
-      "INSERT INTO categories (name) VALUES ($1) RETURNING *",
-      [name]
-    );
+    const addCategoryQuery = {
+      ...categoriesQueries.addCategory,
+      values: [name],
+    };
+    const result = await db.query(addCategoryQuery);
     res.status(201).json(result.rows[0]);
   } catch (err) {
     console.error("Error inserting into the database:", err);
@@ -39,10 +41,11 @@ router.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    const result = await db.query(
-      "DELETE FROM categories WHERE id = $1 RETURNING *",
-      [id]
-    );
+    const deleteCategoryQuery = {
+      ...categoriesQueries.deleteCategoryById,
+      values: [id],
+    };
+    const result = await db.query(deleteCategoryQuery);
 
     if (result.rowCount === 0) {
       return res.status(404).json({ error: "Category not found" });
@@ -67,10 +70,11 @@ router.put("/:id", async (req, res) => {
   }
 
   try {
-    const result = await db.query(
-      "UPDATE categories SET name = $1 WHERE id = $2 RETURNING *",
-      [name, id]
-    );
+    const updateCategoryQuery = {
+      ...categoriesQueries.updateCategoryById,
+      values: [name, id],
+    };
+    const result = await db.query(updateCategoryQuery);
 
     if (result.rowCount === 0) {
       return res.status(404).json({ error: "Category not found" });
