@@ -4,6 +4,7 @@ const tableQueries = require("../queries/createtables");
 db.connect()
   .then(async () => {
     try {
+      await db.query(tableQueries.createdatabase());
       await db.query(tableQueries.createUsers().text);
       await db.query(tableQueries.createCategories().text);
       await db.query(tableQueries.createFinances().text);

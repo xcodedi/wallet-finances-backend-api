@@ -2,6 +2,11 @@ const db = require("../db");
 const tableQueries = require("../queries/createtables");
 
 const createTablesQueries = {
+  createdatabase: () => {
+    return {
+      name: "create-database",
+    };
+  },
   createUsers: () => {
     return {
       name: "create-users",
