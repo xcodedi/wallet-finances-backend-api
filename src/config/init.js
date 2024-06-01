@@ -1,20 +1,20 @@
-const db = require("../db");
-const tableQueries = require("../queries/createtables");
+const db = require("../db"); // Importa o módulo de banco de dados
+const tableQueries = require("../queries/createtables"); // Importa as consultas para criar tabelas
 
-db.connect()
+db.connect() // Conecta ao banco de dados
   .then(async () => {
     try {
-      await db.query(tableQueries.createdatabase());
-      await db.query(tableQueries.createUsers().text);
-      await db.query(tableQueries.createCategories().text);
-      await db.query(tableQueries.createFinances().text);
-      console.log("Tabelas criadas com sucesso ou já existem!"); // Mensagem de sucesso
+      await db.query(tableQueries.createdatabase()); // Cria o banco de dados, se não existir
+      await db.query(tableQueries.createUsers().text); // Cria a tabela de usuários, se não existir
+      await db.query(tableQueries.createCategories().text); // Cria a tabela de categorias, se não existir
+      await db.query(tableQueries.createFinances().text); // Cria a tabela de finanças, se não existir
+      console.log("Tables created successfully or already exist!"); // Mensagem de sucesso
     } catch (error) {
-      throw new Error("Erro ao criar tabelas: " + error.message);
+      throw new Error("Error creating tables: " + error.message); // Lança um erro se houver um problema na criação das tabelas
     } finally {
       await db.end(); // Encerrar a conexão com o banco de dados após a execução
     }
   })
   .catch((error) => {
-    console.error("Erro ao conectar ao banco de dados: " + error.message);
+    console.error("Error connecting to the database: " + error.message); // Loga um erro se houver um problema na conexão
   });
