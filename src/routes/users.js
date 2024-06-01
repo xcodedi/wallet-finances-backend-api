@@ -1,31 +1,23 @@
+// Importa o framework Express para criar o servidor e definir rotas
 const express = require("express");
-const router = express.Router();
-const db = require("../db");
-const usersqueries = require("../queries/users");
+const router = express.Router(); // Cria um objeto roteador do Express para lidar com as rotas específicas definidas neste arquivo
+const db = require("../db"); // Importa o módulo de acesso ao banco de dados (presumivelmente contendo funções para executar consultas SQL)
 
-const API_KEY = "cafe"; // Defina sua chave de API aqui
-
-// Função auxiliar para encontrar um usuário por email
-const findOne = (email) => {
-  return {
-    name: "fetch-user",
-    text: "SELECT * FROM users WHERE email = $1",
-    values: [email],
-  };
-};
-
-// Rota para criar um novo usuário
+// Endpoint para criar um novo usuário
 router.post("/", async (req, res) => {
-  const { email, name } = req.body;
+  const { email, name } = req.body; // Extrai os dados da requisição do corpo da requisição
 
+  // Validar entrada de dados
   if (!email || !name) {
     return res.status(400).json({ error: "Email and name are required" });
   }
 
   try {
     // Verificar se o usuário já existe
-    const userQuery = findOne(email);
-    const existingUser = await db.query(userQuery);
+    const existingUser = await db.query(
+      "SELECT * FROM users WHERE email = $1",
+      [email]
+    );
     if (existingUser.rows.length > 0) {
       return res.status(400).json({ error: "User already exists" });
     }
@@ -36,39 +28,41 @@ router.post("/", async (req, res) => {
       [email, name]
     );
     res.status(201).json(result.rows[0]);
-  } catch (err) {
-    console.error("Error inserting into the database:", err);
-    res.status(500).send("Error inserting into the database");
+  } catch (error) {
+    console.error("Error inserting into the database:", error);
+    res.status(500).json({ error: "Error inserting into the database" });
   }
 });
 
-// Rota para obter um usuário por email
-router.get("/:email", async (req, res) => {
-  const { email } = req.params;
+// Endpoint para obter um usuário por email
+router.get("/", async (req, res) => {
+  const { email } = req.query; // Extrai o parâmetro de consulta (query parameter) "email" da requisição
+
+  // Validar entrada de dados
+  if (!email || email.length < 5 || !email.includes("@")) {
+    return res.status(400).json({ error: "Invalid email" });
+  }
 
   try {
-    const userQuery = findOne(email);
-    const result = await db.query(userQuery);
+    const result = await db.query("SELECT * FROM users WHERE email = $1", [
+      email,
+    ]);
     if (result.rows.length === 0) {
       return res.status(404).json({ error: "User not found" });
     }
     res.status(200).json(result.rows[0]);
-  } catch (err) {
-    console.error("Error querying the database:", err);
-    res.status(500).send("Error querying the database");
+  } catch (error) {
+    console.error("Error querying the database:", error);
+    res.status(500).json({ error: "Error querying the database" });
   }
 });
 
-// Rota para atualizar um usuário por email
+// Endpoint para atualizar um usuário por email
 router.put("/:email", async (req, res) => {
   const { email } = req.params;
   const { name } = req.body;
-  const apiKey = req.headers["x-api-key"];
 
-  if (apiKey !== API_KEY) {
-    return res.status(401).json({ error: "Unauthorized: Invalid API Key" });
-  }
-
+  // Validar entrada de dados
   if (!name) {
     return res.status(400).json({ error: "Name is required" });
   }
@@ -78,41 +72,32 @@ router.put("/:email", async (req, res) => {
       "UPDATE users SET name = $1 WHERE email = $2 RETURNING *",
       [name, email]
     );
-
     if (result.rowCount === 0) {
       return res.status(404).json({ error: "User not found" });
     }
-
     res.status(200).json(result.rows[0]);
-  } catch (err) {
-    console.error("Error updating the database:", err);
-    res.status(500).send("Error updating the database");
+  } catch (error) {
+    console.error("Error updating the database:", error);
+    res.status(500).json({ error: "Error updating the database" });
   }
 });
 
-// Rota para deletar um usuário por email
+// Endpoint para deletar um usuário por email
 router.delete("/:email", async (req, res) => {
   const { email } = req.params;
-  const apiKey = req.headers["x-api-key"];
-
-  if (apiKey !== API_KEY) {
-    return res.status(401).json({ error: "Unauthorized: Invalid API Key" });
-  }
 
   try {
     const result = await db.query(
       "DELETE FROM users WHERE email = $1 RETURNING *",
       [email]
     );
-
     if (result.rowCount === 0) {
       return res.status(404).json({ error: "User not found" });
     }
-
     res.status(200).json({ message: "User successfully deleted" });
-  } catch (err) {
-    console.error("Error deleting from the database:", err);
-    res.status(500).send("Error deleting from the database");
+  } catch (error) {
+    console.error("Error deleting from the database:", error);
+    res.status(500).json({ error: "Error deleting from the database" });
   }
 });
 
