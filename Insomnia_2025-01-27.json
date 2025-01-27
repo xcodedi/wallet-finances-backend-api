@@ -1,13 +1,13 @@
 {
   "_type": "export",
   "__export_format": 4,
-  "__export_date": "2024-05-31T20:26:08.861Z",
-  "__export_source": "insomnia.desktop.app:v9.2.0",
+  "__export_date": "2025-01-27T12:34:21.652Z",
+  "__export_source": "insomnia.desktop.app:v10.3.0",
   "resources": [
     {
-      "_id": "req_80093220f4804d8e9efbfa91ee882c69",
-      "parentId": "fld_f5e8358838dd41d19c7f301cf6608f50",
-      "modified": 1717184751346,
+      "_id": "req_71b823358b5e4469ae3d324d2eb77b45",
+      "parentId": "fld_f6481b1baa3e41a481322edf88b3872b",
+      "modified": 1737980674686,
       "created": 1716486188132,
       "url": "http://localhost:3000/finances",
       "name": "Post(create)",
@@ -15,25 +15,28 @@
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"category_id\": 2,\n  \"title\": \"ball\",\n  \"date\": \"2024-05-25\",\n  \"value\": 50.00,\n\t\"user_id\": 3,\n\t\"email\": \"joao.meira@hotmail.com\"\n}\n"
+        "text": "{\n  \"category_id\": 1,\n  \"title\": \"naramig\",\n  \"date\": \"2025-01-26\",\n  \"value\": 50.00,\n  \"user_id\": 2,\n  \"email\": \"di.meira@hotmail.com\"\n}\n"
       },
-      "preRequestScript": "",
-      "parameters": [],
+      "parameters": [
+        {
+          "id": "pair_51fe8f85e73b4255b3e919b1686b00de",
+          "name": "",
+          "value": "",
+          "description": "",
+          "disabled": false
+        }
+      ],
       "headers": [
         {
-          "id": "pair_ea368b5e500247b59148198edaf24d24",
+          "id": "pair_7e1ad1f066ab4cd5a9aca894a4099160",
           "name": "Content-Type",
           "value": "application/json",
-          "description": ""
-        },
-        {
-          "id": "pair_bfee4101a3024b88ad9d88ec9c33cc88",
-          "name": "email",
-          "value": "joao.meira@hotmail.com",
-          "description": ""
+          "description": "",
+          "disabled": false
         }
       ],
       "authentication": {},
+      "preRequestScript": "",
       "metaSortKey": -1716486188132,
       "isPrivate": false,
       "pathParameters": [],
@@ -46,7 +49,7 @@
       "_type": "request"
     },
     {
-      "_id": "fld_f5e8358838dd41d19c7f301cf6608f50",
+      "_id": "fld_f6481b1baa3e41a481322edf88b3872b",
       "parentId": "wrk_22da1df66fd74c78acce0f79cc09cab2",
       "modified": 1716486213688,
       "created": 1716486183331,
@@ -60,7 +63,7 @@
     {
       "_id": "wrk_22da1df66fd74c78acce0f79cc09cab2",
       "parentId": null,
-      "modified": 1715994253311,
+      "modified": 1737831504916,
       "created": 1715994253311,
       "name": "Wallet",
       "description": "",
@@ -68,19 +71,18 @@
       "_type": "workspace"
     },
     {
-      "_id": "req_181b38ad1d7e4099b7224adab060323b",
-      "parentId": "fld_f5e8358838dd41d19c7f301cf6608f50",
-      "modified": 1717184825666,
+      "_id": "req_a194c5828a6a47149c43e65ab92c8391",
+      "parentId": "fld_f6481b1baa3e41a481322edf88b3872b",
+      "modified": 1737981127869,
       "created": 1717184822121,
-      "url": "http://localhost:3000/finances",
+      "url": "http://localhost:3000/finances/4",
       "name": "Put",
       "description": "",
       "method": "PUT",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"category_id\": 2,\n  \"title\": \"ball\",\n  \"date\": \"2024-05-25\",\n  \"value\": 50.00,\n\t\"user_id\": 3,\n\t\"email\": \"joao.meira@hotmail.com\"\n}\n"
+        "text": "{\t\t\n\t\t\"user_id\": 2,\n\t\t\"category_id\": 1,\n\t\t\"date\": \"2025-01-26T03:00:00.000Z\",\n\t\t\"title\": \"naramig\",\n\t\t\"value\": \"100\",\n\t\t\"email\": \"di.meira@hotmail.com\"\n}"
       },
-      "preRequestScript": "",
       "parameters": [],
       "headers": [
         {
@@ -92,11 +94,19 @@
         {
           "id": "pair_bfee4101a3024b88ad9d88ec9c33cc88",
           "name": "email",
-          "value": "joao.meira@hotmail.com",
+          "value": "di.meira@hotmail.com",
           "description": ""
+        },
+        {
+          "id": "pair_2ada125495774ca6805c99a3da4a4e3e",
+          "name": "x-api-key",
+          "value": "cafe",
+          "description": "",
+          "disabled": false
         }
       ],
       "authentication": {},
+      "preRequestScript": "",
       "metaSortKey": -1716475592181.75,
       "isPrivate": false,
       "pathParameters": [],
@@ -109,26 +119,35 @@
       "_type": "request"
     },
     {
-      "_id": "req_58b806a6cc6f479a8965acbe1c10a6a3",
-      "parentId": "fld_f5e8358838dd41d19c7f301cf6608f50",
-      "modified": 1717179648174,
+      "_id": "req_4c5bb1abe7d84052b8464e202f94af0d",
+      "parentId": "fld_f6481b1baa3e41a481322edf88b3872b",
+      "modified": 1737980761551,
       "created": 1716836399272,
       "url": "http://localhost:3000/finances",
       "name": "Get",
       "description": "",
       "method": "GET",
       "body": { "mimeType": "application/json", "text": "" },
-      "preRequestScript": "",
       "parameters": [
         {
-          "id": "pair_2fedd947b7984f508c35fdfd49db3513",
+          "id": "pair_adb58dd76fc443029d257db52d581394",
           "name": "email",
-          "value": "joao.meira@hotmail.com",
-          "description": ""
+          "value": "di.meira@hotmail.com",
+          "description": "",
+          "disabled": false
         }
       ],
-      "headers": [],
+      "headers": [
+        {
+          "id": "pair_58a1337d4d8241d885e39b37bbf80d55",
+          "name": "",
+          "value": "",
+          "description": "",
+          "disabled": false
+        }
+      ],
       "authentication": {},
+      "preRequestScript": "",
       "metaSortKey": -1716464996231.5,
       "isPrivate": false,
       "pathParameters": [],
@@ -141,19 +160,15 @@
       "_type": "request"
     },
     {
-      "_id": "req_3415235b334b49199b135f63c22759d1",
-      "parentId": "fld_f5e8358838dd41d19c7f301cf6608f50",
-      "modified": 1717184916317,
+      "_id": "req_031827f285d94476b0ecfa1ca8a5516d",
+      "parentId": "fld_f6481b1baa3e41a481322edf88b3872b",
+      "modified": 1737980988500,
       "created": 1716757420650,
-      "url": "http://localhost:3000/finances/16",
+      "url": "http://localhost:3000/finances/3",
       "name": "Delete",
       "description": "",
       "method": "DELETE",
-      "body": {
-        "mimeType": "application/json",
-        "text": "{\n  \"category_id\": 5,\n  \"title\": \"Nova descrição\",\n  \"date\": \"2024-06-01\",\n  \"value\": 100.50,\n  \"user_id\": 1\n}"
-      },
-      "preRequestScript": "",
+      "body": { "mimeType": "application/json", "text": "" },
       "parameters": [],
       "headers": [
         {
@@ -163,19 +178,14 @@
           "description": ""
         },
         {
-          "id": "pair_b2f292a4bdaf4f75a9db98365dd267f6",
-          "name": "email",
-          "value": "joao.meira@hotmail.com",
-          "description": ""
-        },
-        {
           "id": "pair_b2b2e6fc80b3472f91eae4dec6e95044",
           "name": "x-api-key",
-          "value": "{{api_key}}",
+          "value": "cafe",
           "description": ""
         }
       ],
       "authentication": {},
+      "preRequestScript": "",
       "metaSortKey": -1716443804331,
       "isPrivate": false,
       "pathParameters": [],
@@ -188,9 +198,9 @@
       "_type": "request"
     },
     {
-      "_id": "req_5c317664c84f45678ca5cdd95226c9ab",
-      "parentId": "fld_a60bbc48d7324ab9b49677f3ef45d84b",
-      "modified": 1717184140929,
+      "_id": "req_7f07092f441a4eb5a55037f9295a8037",
+      "parentId": "fld_0ab7d576dd1e4cd28670da9bf8387423",
+      "modified": 1737933211071,
       "created": 1716401420530,
       "url": "http://localhost:3000/users",
       "name": "POST Created",
@@ -198,9 +208,8 @@
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n\t\"email\": \"sasadsasda@hotmail.com\",\n\t\"name\": \"daos\"\n}"
+        "text": "{\n\t\"email\": \"di.meira@hotmail.com\",\n\t\"name\": \"Diego\"\n}"
       },
-      "preRequestScript": "",
       "parameters": [
         {
           "id": "pair_15642dba4f5e4e73a85e8fc0cfa7f5d2",
@@ -214,6 +223,7 @@
         { "name": "User-Agent", "value": "insomnia/9.2.0" }
       ],
       "authentication": {},
+      "preRequestScript": "",
       "metaSortKey": -1716401420530,
       "isPrivate": false,
       "pathParameters": [],
@@ -226,9 +236,9 @@
       "_type": "request"
     },
     {
-      "_id": "fld_a60bbc48d7324ab9b49677f3ef45d84b",
+      "_id": "fld_0ab7d576dd1e4cd28670da9bf8387423",
       "parentId": "wrk_22da1df66fd74c78acce0f79cc09cab2",
-      "modified": 1716401410706,
+      "modified": 1737934829672,
       "created": 1716401410706,
       "name": "Users",
       "description": "",
@@ -238,22 +248,22 @@
       "_type": "request_group"
     },
     {
-      "_id": "req_895bd589a9a1489aa1716a4b1aac21ec",
-      "parentId": "fld_a60bbc48d7324ab9b49677f3ef45d84b",
-      "modified": 1717186378371,
+      "_id": "req_5cbef2ae76634130a7df225f98084e5e",
+      "parentId": "fld_0ab7d576dd1e4cd28670da9bf8387423",
+      "modified": 1737933451507,
       "created": 1717184192536,
-      "url": "http://localhost:3000/users/lucas@gmail.com",
+      "url": "http://localhost:3000/users/teste2@hotmail.com",
       "name": "Delete",
       "description": "",
       "method": "DELETE",
       "body": { "mimeType": "application/json", "text": "" },
-      "preRequestScript": "",
       "parameters": [
         {
-          "id": "pair_38a901135b984131a3af2c786ca662ac",
-          "name": "email",
-          "value": "lucas@gmail.com",
-          "description": ""
+          "id": "pair_b6f37c1c90724067989e1bc0a8bc8431",
+          "name": "",
+          "value": "",
+          "description": "",
+          "disabled": false
         }
       ],
       "headers": [
@@ -261,6 +271,7 @@
         { "name": "User-Agent", "value": "insomnia/9.2.0" }
       ],
       "authentication": {},
+      "preRequestScript": "",
       "metaSortKey": -1716371412546.125,
       "isPrivate": false,
       "pathParameters": [],
@@ -273,19 +284,18 @@
       "_type": "request"
     },
     {
-      "_id": "req_e277fe7c76da45adb76e8caedd1ab478",
-      "parentId": "fld_a60bbc48d7324ab9b49677f3ef45d84b",
-      "modified": 1717176718324,
+      "_id": "req_04634d53985b4aa28f07b2cad6505269",
+      "parentId": "fld_0ab7d576dd1e4cd28670da9bf8387423",
+      "modified": 1737902607001,
       "created": 1716402942875,
-      "url": "http://localhost:3000/users/joao.meira@hotmail.com",
+      "url": "http://localhost:3000/users/teste2@hotmail.com",
       "name": "Uptade",
       "description": "",
       "method": "PUT",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n\t\"name\": \"DUDU\"\n}"
+        "text": "{\n\t\"name\": \"MEIRA CERTo\",\n\t\"email\": \"certo@hotmail.com\"\n}"
       },
-      "preRequestScript": "",
       "parameters": [],
       "headers": [
         {
@@ -296,6 +306,7 @@
         }
       ],
       "authentication": {},
+      "preRequestScript": "",
       "metaSortKey": -1716341404562.25,
       "isPrivate": false,
       "pathParameters": [],
@@ -308,22 +319,22 @@
       "_type": "request"
     },
     {
-      "_id": "req_48f5b4c6e79c42b4a4971b2f920b72d7",
-      "parentId": "fld_a60bbc48d7324ab9b49677f3ef45d84b",
-      "modified": 1717181789268,
+      "_id": "req_b520c482da4b4262bb20141031daf1f4",
+      "parentId": "fld_0ab7d576dd1e4cd28670da9bf8387423",
+      "modified": 1737933356770,
       "created": 1716402426680,
       "url": "http://localhost:3000/users",
       "name": "GET",
       "description": "",
       "method": "GET",
       "body": { "mimeType": "application/json", "text": "" },
-      "preRequestScript": "",
       "parameters": [
         {
-          "id": "pair_8633f5d0fcea4d14bb4ae0926d56d150",
+          "id": "pair_91c9a1364f5045f6b43f2b6fbf4d6b4f",
           "name": "email",
-          "value": "joao.meira@hotmail.com",
-          "description": ""
+          "value": "di.meira@hotmail.com",
+          "description": "",
+          "disabled": false
         }
       ],
       "headers": [
@@ -339,6 +350,7 @@
         }
       ],
       "authentication": {},
+      "preRequestScript": "",
       "metaSortKey": -1716281388594.5,
       "isPrivate": false,
       "pathParameters": [],
@@ -351,8 +363,8 @@
       "_type": "request"
     },
     {
-      "_id": "req_e4e9d80aeab942608b30f8fe09b4436d",
-      "parentId": "fld_00a2efedf43c43bc87cdaa2794987bef",
+      "_id": "req_df5a6d96a97b46498fa73a164860b57f",
+      "parentId": "fld_ff14c6d95bbb4bdabb2dfe7dd813f1a5",
       "modified": 1716317181844,
       "created": 1716081012068,
       "url": "http://localhost:3000/categories",
@@ -360,10 +372,10 @@
       "description": "",
       "method": "GET",
       "body": {},
-      "preRequestScript": "",
       "parameters": [],
       "headers": [{ "name": "User-Agent", "value": "insomnia/9.2.0" }],
       "authentication": {},
+      "preRequestScript": "",
       "metaSortKey": -1716161356659,
       "isPrivate": false,
       "pathParameters": [],
@@ -376,7 +388,7 @@
       "_type": "request"
     },
     {
-      "_id": "fld_00a2efedf43c43bc87cdaa2794987bef",
+      "_id": "fld_ff14c6d95bbb4bdabb2dfe7dd813f1a5",
       "parentId": "wrk_22da1df66fd74c78acce0f79cc09cab2",
       "modified": 1716161347039,
       "created": 1716161347039,
@@ -388,25 +400,25 @@
       "_type": "request_group"
     },
     {
-      "_id": "req_0e5c2af957ca41ee9148a38daa11572c",
-      "parentId": "fld_00a2efedf43c43bc87cdaa2794987bef",
-      "modified": 1717175079589,
+      "_id": "req_8fbbce6618d6463784a82c20e634ffd2",
+      "parentId": "fld_ff14c6d95bbb4bdabb2dfe7dd813f1a5",
+      "modified": 1737902702969,
       "created": 1716314702912,
-      "url": "http://localhost:3000/categories/2",
+      "url": "http://localhost:3000/categories/1",
       "name": "Update",
       "description": "",
       "method": "PUT",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n\t\"name\": \"lazerdemais\"\n}"
+        "text": "{\n\t\"name\": \"Farmácia\"\n}"
       },
-      "preRequestScript": "",
       "parameters": [],
       "headers": [
         { "name": "Content-Type", "value": "application/json" },
         { "name": "User-Agent", "value": "insomnia/9.2.0" }
       ],
       "authentication": {},
+      "preRequestScript": "",
       "metaSortKey": -1716140469499.625,
       "isPrivate": false,
       "pathParameters": [],
@@ -419,22 +431,22 @@
       "_type": "request"
     },
     {
-      "_id": "req_d89cf2c37ba748d28efe40ff2f2393b7",
-      "parentId": "fld_00a2efedf43c43bc87cdaa2794987bef",
-      "modified": 1717184087403,
+      "_id": "req_0f293b0b417549f0b7b4721d87acb336",
+      "parentId": "fld_ff14c6d95bbb4bdabb2dfe7dd813f1a5",
+      "modified": 1737902722115,
       "created": 1716235113924,
-      "url": "http://localhost:3000/categories/14",
+      "url": "http://localhost:3000/categories/2",
       "name": "Delete",
       "description": "",
       "method": "DELETE",
       "body": { "mimeType": "application/json", "text": "" },
-      "preRequestScript": "",
       "parameters": [],
       "headers": [
         { "name": "Content-Type", "value": "application/json" },
         { "name": "User-Agent", "value": "insomnia/9.2.0" }
       ],
       "authentication": {},
+      "preRequestScript": "",
       "metaSortKey": -1716119582340.25,
       "isPrivate": false,
       "pathParameters": [],
@@ -447,9 +459,9 @@
       "_type": "request"
     },
     {
-      "_id": "req_00025b786ec84c2295f2d3f1db1a2e27",
-      "parentId": "fld_00a2efedf43c43bc87cdaa2794987bef",
-      "modified": 1716943083424,
+      "_id": "req_21d48ffe92004e90904489941c187987",
+      "parentId": "fld_ff14c6d95bbb4bdabb2dfe7dd813f1a5",
+      "modified": 1737902668757,
       "created": 1716161385081,
       "url": "http://localhost:3000/categories",
       "name": "Post (create)",
@@ -457,15 +469,15 @@
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n\t\"name\": \"Diego\"\n}"
+        "text": "{\n\t\"name\": \"Mercado\"\n}"
       },
-      "preRequestScript": "",
       "parameters": [],
       "headers": [
         { "name": "Content-Type", "value": "application/json" },
         { "name": "User-Agent", "value": "insomnia/9.2.0" }
       ],
       "authentication": {},
+      "preRequestScript": "",
       "metaSortKey": -1716077808021.5,
       "isPrivate": false,
       "pathParameters": [],
@@ -478,7 +490,7 @@
       "_type": "request"
     },
     {
-      "_id": "req_3c74b36799044081be50a8d726665a6f",
+      "_id": "req_9c74b017c33c471793f96ad580939609",
       "parentId": "wrk_22da1df66fd74c78acce0f79cc09cab2",
       "modified": 1715994305316,
       "created": 1715994259384,
@@ -487,10 +499,10 @@
       "description": "",
       "method": "GET",
       "body": {},
-      "preRequestScript": "",
       "parameters": [],
       "headers": [{ "name": "User-Agent", "value": "insomnia/9.2.0" }],
       "authentication": {},
+      "preRequestScript": "",
       "metaSortKey": -1715994259384,
       "isPrivate": false,
       "pathParameters": [],
@@ -505,11 +517,11 @@
     {
       "_id": "env_a1e378a9ef1505a0aac89600e3dee81d9bb4560c",
       "parentId": "wrk_22da1df66fd74c78acce0f79cc09cab2",
-      "modified": 1717091409573,
+      "modified": 1737831504888,
       "created": 1715994253315,
       "name": "Base Environment",
-      "data": { "baseURL": "hhtp://localhost:3000", "api_key": "your api key" },
-      "dataPropertyOrder": { "&": ["baseURL", "api_key"] },
+      "data": {},
+      "dataPropertyOrder": null,
       "color": null,
       "isPrivate": false,
       "metaSortKey": 1715994253315,
@@ -518,8 +530,8 @@
     {
       "_id": "jar_a1e378a9ef1505a0aac89600e3dee81d9bb4560c",
       "parentId": "wrk_22da1df66fd74c78acce0f79cc09cab2",
-      "modified": 1715994253338,
-      "created": 1715994253338,
+      "modified": 1737831504716,
+      "created": 1737831504716,
       "name": "Default Jar",
       "cookies": [],
       "_type": "cookie_jar"
